@@ -1,6 +1,6 @@
 #Rutube (spelled as R youtube)
 
-Simple light weight dependency free ruby port of pytube for downloading videos.
+Simple light weight dependency free ruby port of pytube for downloading youtube videos.
 
 ##Requirements
 * ruby 2.0+
