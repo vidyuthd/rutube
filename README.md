@@ -1,4 +1,4 @@
-#Rutube (spelled as R youtube)
+#Rutube (pronounced as R youtube)
 
 Simple light weight dependency free ruby port of pytube for downloading youtube videos.
 
@@ -12,9 +12,33 @@ Simple light weight dependency free ruby port of pytube for downloading youtube 
 ```ruby
   require 'rutube'  
        
-  yt = Youtube.new("Dancing Scene from Pulp Fiction.mp4","http://www.youtube.com/watch?v=Ik-RsDGPI5Y")
+  # Set the video URL
+  yt = Youtube.new("http://www.youtube.com/watch?v=Ik-RsDGPI5Y")
+  
+  # Once set, you can see all the codec and quality options YouTube has made
+  # available for the perticular video by printing videos.
+  yt.list_formats
+  
+  #Video : H.264 (.mp4) - 720p
+  #Video : VP8 (.webm) - 360p
+  #Video : H.264 (.mp4) - 360p
+  #Video : Sorenson H.263 (.flv) - 240p
+  #Video : MPEG-4 Visual (.3gp) - 240p
+  #Video : MPEG-4 Visual (.3gp) - 144p
+  
+  
   video = yt.get("mp4")
+  
+  # to select a video by a specific resolution and filetype you can use the get
+  # method.
+  
+  video = yt.get('mp4', '720p')
+  
   video.download()
+  
+  # Note: If you wanted to choose the output directory, simply pass it as an
+  # argument to the download method.
+  video.download('/tmp/')
 ```  
 
 ##Thanks

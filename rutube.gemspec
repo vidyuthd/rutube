@@ -1,7 +1,7 @@
 # coding: utf-8
 Gem::Specification.new do |s|
   s.name = 'rutube'
-  s.version = '0.1'
+  s.version = '0.2'
   s.licenses = ['MIT']
   s.authors = ["Vidyuth Dandu"]
   s.email = ["vidyuth.bitsgoa@gmail.com"]

@@ -3,8 +3,8 @@ require 'util'
 class Youtube
   attr_accessor :file_name, :video_url, :video_id, :fmt_values, :videos, :title
 
-  def initialize(file_name, video_url)
-    @file_name, @video_url = file_name, video_url
+  def initialize(video_url)
+    @video_url = video_url
     initialize_video_info(self)
   end
 
@@ -50,6 +50,7 @@ class Youtube
       yt.title = data["args"]["title"]
       js_url = "http:" + data["assets"]["js"]
       video_urls = stream_map["url"]
+      self.file_name = yt.title
 
       yt.videos, yt.fmt_values = [], []
 
@@ -79,11 +80,11 @@ class Youtube
   end
 
 
-  def get(type)
+  def get(type, resoln=nil)
     return_videos = []
 
     for video in @videos
-      if video.fmt_data["extension"] == type
+      if video.fmt_data["extension"] == type && (resoln == nil || (resoln != nil && resoln == video.fmt_data["resolution"]))
         return_videos.push(video)
         break
       end
@@ -92,8 +93,15 @@ class Youtube
     if return_videos.length == 1
       return return_videos[0]
     else
+      puts "no video present for the given format #{type}"
       return nil
     end
+  end
 
+  def list_formats
+    for video in @videos
+      puts "Video : #{video.fmt_data["video_codec"]} (.#{video.fmt_data["extension"]}) - #{video.fmt_data["resolution"]}"
+    end
+    return nil
   end
 end
