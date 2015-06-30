@@ -50,7 +50,7 @@ class Youtube
       yt.title = data["args"]["title"]
       js_url = "http:" + data["assets"]["js"]
       video_urls = stream_map["url"]
-      self.file_name = yt.title
+      self.file_name = Util.sanitize_filename(yt.title)
 
       yt.videos, yt.fmt_values = [], []
 
@@ -82,14 +82,12 @@ class Youtube
 
   def get(type, resoln=nil)
     return_videos = []
-
     for video in @videos
       if video.fmt_data["extension"] == type && (resoln == nil || (resoln != nil && resoln == video.fmt_data["resolution"]))
         return_videos.push(video)
         break
       end
     end
-
     if return_videos.length == 1
       return return_videos[0]
     else

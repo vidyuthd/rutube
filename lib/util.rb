@@ -99,6 +99,12 @@ module Util
 
   module_function :_extract_fmt
 
+  def sanitize_filename(file_name)
+    file_name.gsub(/[^\w\.\-]/, "_")
+  end
+
+  module_function :sanitize_filename
+
   def _cipher(s, url)
     # TODO need to handle this by invoking js from ruby
   end

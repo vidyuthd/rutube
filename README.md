@@ -34,7 +34,14 @@ Simple light weight dependency free ruby port of pytube for downloading youtube 
   
   video = yt.get('mp4', '720p')
   
-  video.download()
+  # gives instance of a new thread spawned which continues download in background 
+  t = video.download()
+  
+  # call the join method on thread 
+  # you need to do this inorder for the program to exit after the thread completes 
+  # otherwise the program may exit first, this will be useful for looping and 
+  # downloading multiple videos where multiple threads download simultaneously
+  t.join
   
   # Note: If you wanted to choose the output directory, simply pass it as an
   # argument to the download method.

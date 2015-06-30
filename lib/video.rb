@@ -11,6 +11,10 @@ class Video
   end
 
   def download(dir=Dir.pwd)
+    Thread.new(dir) { _download(dir) }
+  end
+
+  def _download(dir)
     if !Dir.exist?(dir)
       raise "Directory doesn't exist"
     end
