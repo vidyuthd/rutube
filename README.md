@@ -48,5 +48,9 @@ Simple light weight dependency free ruby port of pytube for downloading youtube 
   video.download('/tmp/')
 ```  
 
+##TODO
+- vevo video downloads
+- signature encryption 
+
 ##Thanks
-NFicano [Github username]
+[NFicano pytube](https://github.com/nficano/pytube)
